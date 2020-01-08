@@ -13,9 +13,10 @@ public class Algorithms {
     Algorithms(File file) {
         this.file = file;
         list = new ArrayList<Integer>();
+        initialize();
     }
 
-    public void initialize() {
+    private void initialize() {
         // Read in the data
         long readStartTime = System.currentTimeMillis();
         readData();
@@ -140,6 +141,15 @@ public class Algorithms {
             swapElements(smallestPosition, sortPosition);
             sortPosition++;
         }
+    }
+
+    public int[] getData() {
+        int [] data = new int [this.list.size()];
+        for (int i = 0 ; i < this.list.size(); ++i) {
+            data[i] = this.list.get(i);
+        }
+
+        return data;
     }
 
     private void shuffleData() {
