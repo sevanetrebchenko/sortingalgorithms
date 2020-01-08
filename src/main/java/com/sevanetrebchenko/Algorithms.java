@@ -3,6 +3,7 @@ package com.sevanetrebchenko;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Algorithms {
@@ -27,10 +28,32 @@ public class Algorithms {
 
     public void run() {
         // selection sort
-        long startingSortTime = System.currentTimeMillis();
+        long startingSortTime;
+        long endingSortTime;
+
+        // selection sort
+        System.out.println("Shuffling...");
+        shuffleData();
+
+        startingSortTime = System.currentTimeMillis();
         selectionSort();
-        long endingSelectionSortTime = System.currentTimeMillis();
-        System.out.println("Time taken for selection sort: " + (endingSelectionSortTime - startingSortTime) + " milliseconds.");
+        endingSortTime = System.currentTimeMillis();
+        System.out.println("Time taken for selection sort: " + (endingSortTime - startingSortTime) + " milliseconds.");
+
+        // bubble sort
+        System.out.println("Shuffling...");
+        shuffleData();
+
+        startingSortTime = System.currentTimeMillis();
+        bubbleSort();
+        endingSortTime = System.currentTimeMillis();
+        System.out.println("Time taken for bubble sort: " + (endingSortTime - startingSortTime) + " milliseconds.");
+
+        System.out.println("Shuffling...");
+        shuffleData();
+
+        // merge sort
+
     }
 
 //    public static ArrayList radixSort(int maximum, ArrayList <Integer> original, ArrayList <Integer> sorted, int module) {
@@ -66,27 +89,26 @@ public class Algorithms {
 //        }
 //    }
 //
-//    public static void bubbleSort(ArrayList<Integer> number) {
-//        for (int i = 0; i < number.size()-1; i++) {
-//            int j = i + 1;
-//            if (number.get(i) > number.get(j)) {
-//                int temporary = number.get(i);
-//                number.set(i, number.get(j));
-//                number.set(j, temporary);
-//            }
-//        }
-//    }
+    public void bubbleSort() {
+        for (int i = 0; i < this.list.size() - 1; ++i) {
+            for (int j = 0; j < this.list.size() - i - 1; ++j) {
+                if (this.list.get(i) < this.list.get(j)) {
+                    swapElements(i, j);
+                }
+            }
+        }
+    }
 
-    public ArrayList<Integer> selectionSort() {
+    public void selectionSort() {
         int sortPosition = 0;
         int smallestPosition;
 
-        for (int i = 0; i < list.size() - 1; i++) {
+        for (int i = 0; i < this.list.size() - 1; ++i) {
             smallestPosition = i;
-            int smallestValue = list.get(smallestPosition);
+            int smallestValue = this.list.get(smallestPosition);
 
-            for (int j = 1 + i; j < list.size(); j++) {
-                int currentValue = list.get(j);
+            for (int j = 1 + i; j < this.list.size(); ++j) {
+                int currentValue = this.list.get(j);
                 if (currentValue < smallestValue) {
                     smallestValue = currentValue;
                     smallestPosition = j;
@@ -94,16 +116,23 @@ public class Algorithms {
             }
 
             // we have the smallest value, swap with the next value in the array
-            swapElements(list, smallestPosition, sortPosition);
+            swapElements(smallestPosition, sortPosition);
             sortPosition++;
         }
-        return list;
     }
 
-    private <T> void swapElements(ArrayList<T> list, int firstPosition, int secondPosition) {
-        T tempValue = list.get(firstPosition);
-        list.set(firstPosition, list.get(secondPosition));
-        list.set(secondPosition, tempValue);
+    private void shuffleData() {
+        Random random = new Random();
+        for (int i = list.size() - 1; i > 0; --i) {
+            int j = random.nextInt(i + 1);
+            swapElements(i , j);
+        }
+    }
+
+    private void swapElements(int firstPosition, int secondPosition) {
+        int tempValue = this.list.get(firstPosition);
+        this.list.set(firstPosition, this.list.get(secondPosition));
+        this.list.set(secondPosition, tempValue);
     }
 
     private void readData() {
