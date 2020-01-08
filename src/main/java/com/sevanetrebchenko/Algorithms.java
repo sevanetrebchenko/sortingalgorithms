@@ -96,6 +96,12 @@ public class Algorithms {
 //        }
 //    }
 
+    public void insertionSort() {
+        for (int i = 0; i < this.list.size() - 1; ++i) {
+
+        }
+    }
+
     public void recursiveBubbleSort(int listSize) {
         // base case
         if (listSize == 1) {
