@@ -49,8 +49,13 @@ public class Algorithms {
         endingSortTime = System.currentTimeMillis();
         System.out.println("Time taken for bubble sort: " + (endingSortTime - startingSortTime) + " milliseconds.");
 
+        // recursive bubble sort
         System.out.println("Shuffling...");
         shuffleData();
+
+        startingSortTime = System.currentTimeMillis();
+        recursiveBubbleSort(list.size());
+        endingSortTime = System.currentTimeMillis();
 
         // merge sort
 
@@ -88,12 +93,16 @@ public class Algorithms {
 //
 //        }
 //    }
-//
+
+    public void recursiveBubbleSort(int listSize) {
+
+    }
+
     public void bubbleSort() {
         for (int i = 0; i < this.list.size() - 1; ++i) {
             for (int j = 0; j < this.list.size() - i - 1; ++j) {
-                if (this.list.get(i) < this.list.get(j)) {
-                    swapElements(i, j);
+                if (this.list.get(j) > this.list.get(j + 1)) {
+                    swapElements(j, j + 1);
                 }
             }
         }
