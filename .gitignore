@@ -1,0 +1,14 @@
+# Intellij
+.idea/
+*.iml
+*.iws
+*.xml
+
+# Maven
+out/
+log/
+target/
+
+# LWJGL
+libs/lwjgl-2.9.3/doc
+libs/lwjgl-2.9.3/res
