@@ -3,11 +3,11 @@ package com.sevanetrebchenko;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import java.io.File;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class AlgorithmsTest {
-
     private static Algorithms test;
 
     private void check(int [] data) {
@@ -25,17 +25,27 @@ class AlgorithmsTest {
         int LIST_SIZE = 10;
         test.recursiveBubbleSort(LIST_SIZE);
         check(test.getData());
+        test.shuffleData();
     }
 
     @Test
     void bubbleSort() {
         test.bubbleSort();
         check(test.getData());
+        test.shuffleData();
     }
 
     @Test
     void selectionSort() {
         test.selectionSort();
         check(test.getData());
+        test.shuffleData();
+    }
+
+    @Test
+    void insertionSort() {
+        test.insertionSort();
+        check(test.getData());
+        test.shuffleData();
     }
 }

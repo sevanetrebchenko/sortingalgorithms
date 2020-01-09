@@ -24,7 +24,6 @@ public class Algorithms {
 
         // Time to add all the numbers to the ArrayList
         System.out.println("Time to read file: " + (readEndTime - readStartTime) + " milliseconds.");
-
     }
 
     public void run() {
@@ -59,8 +58,14 @@ public class Algorithms {
         endingSortTime = System.currentTimeMillis();
         System.out.println("Time taken for recursive bubble sort: " + (endingSortTime - startingSortTime) + " milliseconds.");
 
-        // merge sort
+        // insertion sort
+        System.out.println("Shuffling...");
+        shuffleData();
 
+        startingSortTime = System.currentTimeMillis();
+        insertionSort();
+        endingSortTime = System.currentTimeMillis();
+        System.out.println("Time taken for insertion sort: " + (endingSortTime - startingSortTime) + " milliseconds.");
     }
 
 //    public static ArrayList radixSort(int maximum, ArrayList <Integer> original, ArrayList <Integer> sorted, int module) {
@@ -97,8 +102,21 @@ public class Algorithms {
 //    }
 
     public void insertionSort() {
-        for (int i = 0; i < this.list.size() - 1; ++i) {
+        for (int i = 1; i < this.list.size(); ++i) {
+            // get number to insert
+            int valueToInsert = this.list.get(i);
 
+            // move everything over one
+            // index to backtrack and insert properly
+            int index = i;
+
+            // backtrack
+            while (index > 0 && valueToInsert < this.list.get(index - 1)) {
+                this.list.set(index, this.list.get(index - 1));
+                --index;
+            }
+
+            this.list.set(index, valueToInsert);
         }
     }
 
@@ -158,7 +176,7 @@ public class Algorithms {
         return data;
     }
 
-    private void shuffleData() {
+    public void shuffleData() {
         Random random = new Random();
         for (int i = list.size() - 1; i > 0; --i) {
             int j = random.nextInt(i + 1);
