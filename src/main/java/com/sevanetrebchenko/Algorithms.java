@@ -23,7 +23,7 @@ public class Algorithms {
         long readEndTime = System.currentTimeMillis();
 
         // Time to add all the numbers to the ArrayList
-        System.out.println("Time to read file: " + (readEndTime - readStartTime) + " milliseconds.");
+        System.out.println("Time to read file: " + (readEndTime - readStartTime) + " milliseconds. List contains " + this.list.size() + " elements.");
     }
 
     public void run() {
@@ -53,14 +53,14 @@ public class Algorithms {
         System.out.println("Shuffling...");
         shuffleData();
 
-        startingSortTime = System.currentTimeMillis();
-        recursiveBubbleSort(list.size());
-        endingSortTime = System.currentTimeMillis();
-        System.out.println("Time taken for recursive bubble sort: " + (endingSortTime - startingSortTime) + " milliseconds.");
-
-        // insertion sort
-        System.out.println("Shuffling...");
-        shuffleData();
+//        startingSortTime = System.currentTimeMillis();
+//        recursiveBubbleSort(list.size());
+//        endingSortTime = System.currentTimeMillis();
+//        System.out.println("Time taken for recursive bubble sort: " + (endingSortTime - startingSortTime) + " milliseconds.");
+//
+//        // insertion sort
+//        System.out.println("Shuffling...");
+//        shuffleData();
 
         startingSortTime = System.currentTimeMillis();
         insertionSort();
@@ -82,16 +82,6 @@ public class Algorithms {
 //        }
 //    }
 //
-//    public static int getMaximum (ArrayList <Integer> toSort) {
-//        int maximum = toSort.get(0);
-//        for (Integer integer : toSort) {
-//            if (integer > maximum) {
-//                maximum = integer;
-//            }
-//        }
-//        return maximum;
-//    }
-//
 //    public static void mergeSort(int [] toSort) {
 //        int [] left = Arrays.copyOfRange(toSort, 0, toSort.length/2);
 //        int [] right = Arrays.copyOfRange(toSort, toSort.length/2, toSort.length);
@@ -100,6 +90,9 @@ public class Algorithms {
 //
 //        }
 //    }
+
+    public void mergeSort() {
+    }
 
     public void insertionSort() {
         for (int i = 1; i < this.list.size(); ++i) {

@@ -11,7 +11,7 @@ import java.util.Collections;
 public class SortingAlgorithms {
 
     public static void main(String[] args) {
-        File file = new File(System.getProperty("user.dir") + "\\src\\main\\resources\\random1000.txt");
+        File file = new File(System.getProperty("user.dir") + "\\src\\main\\resources\\random10000.txt");
         Algorithms algorithms = new Algorithms(file);
         algorithms.run();
     }
