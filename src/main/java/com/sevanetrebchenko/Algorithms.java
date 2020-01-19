@@ -3,15 +3,20 @@ package com.sevanetrebchenko;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
-public class Algorithms {
+public class Algorithms extends Thread {
     private ArrayList<Integer> list;
     private File file;
+    private final Object lock;
+    private static int counter = 0;
 
-    Algorithms(File file) {
+    Algorithms(File file, Object lock) {
         this.file = file;
+        this.lock = lock;
         list = new ArrayList<Integer>();
         initialize();
     }
@@ -27,7 +32,6 @@ public class Algorithms {
     }
 
     public void run() {
-        // selection sort
         long startingSortTime;
         long endingSortTime;
 
@@ -36,7 +40,7 @@ public class Algorithms {
         shuffleData();
 
         startingSortTime = System.currentTimeMillis();
-        selectionSort();
+//        selectionSort();
         endingSortTime = System.currentTimeMillis();
         System.out.println("Time taken for selection sort: " + (endingSortTime - startingSortTime) + " milliseconds.");
 
@@ -110,6 +114,7 @@ public class Algorithms {
             }
 
             this.list.set(index, valueToInsert);
+            this.synchronize();
         }
     }
 
@@ -133,6 +138,8 @@ public class Algorithms {
             for (int j = 0; j < this.list.size() - i - 1; ++j) {
                 if (this.list.get(j) > this.list.get(j + 1)) {
                     swapElements(j, j + 1);
+                    System.out.println("did one run");
+                    this.synchronize();
                 }
             }
         }
@@ -143,6 +150,8 @@ public class Algorithms {
         int smallestPosition;
 
         for (int i = 0; i < this.list.size() - 1; ++i) {
+            ++counter;
+            System.out.println("Entered selection sort loop for the " + counter + " time.");
             smallestPosition = i;
             int smallestValue = this.list.get(smallestPosition);
 
@@ -157,7 +166,10 @@ public class Algorithms {
             // we have the smallest value, swap with the next value in the array
             swapElements(smallestPosition, sortPosition);
             sortPosition++;
+            System.out.println("did one run");
+            this.synchronize();
         }
+        System.out.println("Selection sort done.");
     }
 
     public int[] getData() {
@@ -174,6 +186,27 @@ public class Algorithms {
         for (int i = list.size() - 1; i > 0; --i) {
             int j = random.nextInt(i + 1);
             swapElements(i , j);
+        }
+    }
+
+    public boolean isSorted() {
+        for (int i = 0; i < this.list.size() - 1; i++) {
+            if(this.list.get(i).compareTo(this.list.get(i + 1)) > 0){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void synchronize() {
+        synchronized (lock) {
+            try {
+                System.out.println("waiting");
+                lock.wait();
+            } catch (InterruptedException e) {
+                System.out.println("stack");
+                e.printStackTrace();
+            }
         }
     }
 

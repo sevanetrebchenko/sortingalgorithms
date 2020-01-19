@@ -8,11 +8,9 @@ import java.io.File;
 public class SortingAlgorithms {
 
     public static void main(String[] args) {
-        File file = new File(System.getProperty("user.dir") + "\\src\\main\\resources\\random10000.txt");
-        Algorithms algorithms = new Algorithms(file);
-        algorithms.run();
+        final AlgorithmsGraphics graphics = new AlgorithmsGraphics(new Dimension(1600, 800));
 
-        AlgorithmsGraphics graphics = new AlgorithmsGraphics(new Dimension(600, 800));
+        graphics.init();
         graphics.run();
     }
 

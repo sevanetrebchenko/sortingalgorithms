@@ -17,7 +17,7 @@ class AlgorithmsTest {
 
     @BeforeAll
     static void initialize() {
-        test = new Algorithms(new File(System.getProperty("user.dir") + "\\src\\test\\resources\\random10.txt"));
+//        test = new Algorithms(new File(System.getProperty("user.dir") + "\\src\\test\\resources\\random10.txt"));
     }
 
     @Test
@@ -37,7 +37,7 @@ class AlgorithmsTest {
 
     @Test
     void selectionSort() {
-        test.selectionSort();
+//        test.selectionSort();
         check(test.getData());
         test.shuffleData();
     }
