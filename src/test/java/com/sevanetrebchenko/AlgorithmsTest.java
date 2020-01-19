@@ -3,7 +3,6 @@ package com.sevanetrebchenko;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import java.io.File;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
@@ -17,7 +16,8 @@ class AlgorithmsTest {
 
     @BeforeAll
     static void initialize() {
-//        test = new Algorithms(new File(System.getProperty("user.dir") + "\\src\\test\\resources\\random10.txt"));
+        Pair<Object, Boolean> multithreading = new Pair<Object, Boolean>(null, false);
+        test = new Algorithms(new File(System.getProperty("user.dir") + "\\src\\test\\resources\\random10.txt"), multithreading);
     }
 
     @Test
@@ -37,7 +37,7 @@ class AlgorithmsTest {
 
     @Test
     void selectionSort() {
-//        test.selectionSort();
+        test.selectionSort();
         check(test.getData());
         test.shuffleData();
     }

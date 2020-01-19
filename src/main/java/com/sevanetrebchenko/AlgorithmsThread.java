@@ -5,6 +5,7 @@ public class AlgorithmsThread extends Thread {
         SELECTION,
         BUBBLE,
         INSERTION,
+        SHUFFLE,
     }
 
     private SortingAlgorithm sortingAlgorithm;
@@ -26,6 +27,24 @@ public class AlgorithmsThread extends Thread {
             case INSERTION:
                 data.insertionSort();
                 break;
+            case SHUFFLE:
+                data.shuffleData();
+                break;
+        }
+    }
+
+    public String getAlgorithm() {
+        switch (this.sortingAlgorithm) {
+            case SELECTION:
+                return "SELECTION SORT";
+            case BUBBLE:
+                return "BUBBLE SORT";
+            case INSERTION:
+                return "INSERTION SORT";
+            case SHUFFLE:
+                return "SHUFFLE";
+            default:
+                return "INVALID";
         }
     }
 
@@ -33,7 +52,19 @@ public class AlgorithmsThread extends Thread {
         return this.data.isSorted();
     }
 
-    public int[] getData() {
-        return this.data.getData();
+    public boolean isShuffled() {
+        return this.data.isShuffled();
+    }
+
+    public void shuffle() {
+        this.data.shuffle();
+    }
+
+    public SortingAlgorithm getType() {
+        return this.sortingAlgorithm;
+    }
+
+    public void stopThread() {
+        this.data.stopThread();
     }
 }
